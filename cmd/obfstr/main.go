@@ -21,7 +21,7 @@ func main() {
 	var e error
 	var str string
 
-	if str, e = obfs.Obfuscate(cli.Arg(0)); e != nil {
+	if str, e = obfs.ObfuscateString(cli.Arg(0)); e != nil {
 		panic(e)
 	}
 
