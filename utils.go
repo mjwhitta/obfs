@@ -8,27 +8,40 @@ import (
 	"strings"
 )
 
-func bootstrap(size int) ([]byte, int, error) {
+func bootstrap(size int) ([]byte, error) {
 	var bInt *big.Int
 	var data []byte
 	var e error
 	var inc int
 
-	if bInt, e = rand.Int(rand.Reader, big.NewInt(16)); e != nil {
-		return []byte{}, 0, e
+	if bInt, e = rand.Int(rand.Reader, big.NewInt(MaxInc)); e != nil {
+		return []byte{}, e
 	}
 	inc = int(bInt.Int64()&0xff) + 2 // Don't allow 0 or 1
 
-	data = make([]byte, inc*size)
+	data = make([]byte, (inc*size)+1)
 
 	if _, e = io.ReadFull(rand.Reader, data); e != nil {
-		return []byte{}, 0, e
+		return []byte{}, e
 	}
 
-	return data, inc, nil
+	data[0] = byte(inc)
+
+	return data, nil
 }
 
-func generateSrc(function string, data []byte, inc int) string {
+func deobfs(data []byte) []byte {
+	var deobfs []byte
+	var increment = int(data[0])
+
+	for i := 1; i < len(data); i += increment {
+		deobfs = append(deobfs, data[i])
+	}
+
+	return deobfs
+}
+
+func generateSrc(function string, data []byte) string {
 	var line string
 	var src []string
 
@@ -49,7 +62,6 @@ func generateSrc(function string, data []byte, inc int) string {
 	}
 
 	src = append(src, "    },")
-	src = append(src, fmt.Sprintf("    %d,", inc))
 	src = append(src, ")")
 
 	return strings.Join(src, "\n")
