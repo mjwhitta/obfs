@@ -45,7 +45,7 @@ func generateSrc(function string, data []byte) string {
 	var line string
 	var src []string
 
-	src = append(src, "var deobfs = obfs."+function+"(")
+	src = append(src, "obfs."+function+"(")
 	src = append(src, "    []byte{")
 
 	for i, b := range data {
