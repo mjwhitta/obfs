@@ -12,13 +12,12 @@ func DeobfuscateString(data []byte) string {
 
 // ObfuscateByteArray will generate go source to deobfuscate a []byte
 // back into the original []byte.
-func ObfuscateByteArray(bArr []byte) (string, error) {
+func ObfuscateByteArray(bArr []byte) (out string, e error) {
 	var data []byte
-	var e error
 	var increment int
 
 	if data, e = bootstrap(len(bArr)); e != nil {
-		return "", e
+		return
 	}
 
 	increment = int(data[0])
@@ -27,18 +26,18 @@ func ObfuscateByteArray(bArr []byte) (string, error) {
 		data[(i*increment)+1] = b
 	}
 
-	return generateSrc("DeobfuscateByteArray", data), nil
+	out = generateSrc("DeobfuscateByteArray", data)
+	return
 }
 
 // ObfuscateString will generate go source to deobfuscate a []byte
 // back into the original string.
-func ObfuscateString(str string) (string, error) {
+func ObfuscateString(str string) (out string, e error) {
 	var data []byte
-	var e error
 	var increment int
 
 	if data, e = bootstrap(len(str)); e != nil {
-		return "", e
+		return
 	}
 
 	increment = int(data[0])
@@ -47,5 +46,6 @@ func ObfuscateString(str string) (string, error) {
 		data[(i*increment)+1] = c
 	}
 
-	return generateSrc("DeobfuscateString", data), nil
+	out = generateSrc("DeobfuscateString", data)
+	return
 }

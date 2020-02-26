@@ -5,52 +5,47 @@ import (
 	"fmt"
 	"io"
 	"math/big"
-	"strings"
 )
 
-func bootstrap(size int) ([]byte, error) {
+func bootstrap(size int) (data []byte, e error) {
 	var bInt *big.Int
-	var data []byte
-	var e error
 	var inc int
 
 	if bInt, e = rand.Int(rand.Reader, big.NewInt(MaxInc)); e != nil {
-		return []byte{}, e
+		return
 	}
 	inc = int(bInt.Int64()&0xff) + 2 // Don't allow 0 or 1
 
 	data = make([]byte, (inc*size)+1)
 
 	if _, e = io.ReadFull(rand.Reader, data); e != nil {
-		return []byte{}, e
+		return
 	}
 
 	data[0] = byte(inc)
 
-	return data, nil
+	return
 }
 
-func deobfs(data []byte) []byte {
-	var deobfs []byte
+func deobfs(data []byte) (deobfs []byte) {
 	var increment = int(data[0])
 
 	for i := 1; i < len(data); i += increment {
 		deobfs = append(deobfs, data[i])
 	}
 
-	return deobfs
+	return
 }
 
-func generateSrc(function string, data []byte) string {
+func generateSrc(function string, data []byte) (src string) {
 	var line string
-	var src []string
 
-	src = append(src, "obfs."+function+"(")
-	src = append(src, "    []byte{")
+	src = "obfs." + function + "("
+	src += "\n    []byte{"
 
 	for i, b := range data {
 		if (i != 0) && ((i % 9) == 0) {
-			src = append(src, "       "+line)
+			src += "\n       " + line
 			line = fmt.Sprintf(" 0x%02x,", b)
 		} else {
 			line += fmt.Sprintf(" 0x%02x,", b)
@@ -58,11 +53,11 @@ func generateSrc(function string, data []byte) string {
 	}
 
 	if len(line) > 0 {
-		src = append(src, "       "+line)
+		src += "\n       " + line
 	}
 
-	src = append(src, "    },")
-	src = append(src, ")")
+	src += "\n    },"
+	src += "\n)"
 
-	return strings.Join(src, "\n")
+	return
 }
