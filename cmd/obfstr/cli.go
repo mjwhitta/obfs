@@ -6,7 +6,7 @@ import (
 
 	"gitlab.com/mjwhitta/cli"
 	hl "gitlab.com/mjwhitta/hilighter"
-	"gitlab.com/mjwhitta/where"
+	"gitlab.com/mjwhitta/obfs"
 )
 
 // Exit status
@@ -32,8 +32,8 @@ func init() {
 	// Configure cli package
 	cli.Align = true
 	cli.Authors = []string{"Miles Whittaker <mj@whitta.dev>"}
-	cli.Banner = hl.Sprintf("%s [OPTIONS] <cmd>", os.Args[0])
-	cli.BugEmail = "where.bugs@whitta.dev"
+	cli.Banner = hl.Sprintf("%s [OPTIONS] <str>", os.Args[0])
+	cli.BugEmail = "obfs.bugs@whitta.dev"
 	cli.ExitStatus = strings.Join(
 		[]string{
 			"Normally the exit status is 0. In the event of an error",
@@ -47,11 +47,10 @@ func init() {
 		" ",
 	)
 	cli.Info = strings.Join(
-		[]string{"Simple which-like example binary."},
+		[]string{"Generate code for obfuscated string."},
 		" ",
 	)
-	cli.SeeAlso = []string{"command", "which"}
-	cli.Title = "Where"
+	cli.Title = "Obfs"
 
 	// Parse cli flags
 	cli.Flag(
@@ -77,7 +76,7 @@ func validate() {
 
 	// Short circuit if version was requested
 	if flags.version {
-		hl.Printf("where version %s\n", where.Version)
+		hl.Printf("obfstr version %s\n", obfs.Version)
 		os.Exit(Good)
 	}
 
