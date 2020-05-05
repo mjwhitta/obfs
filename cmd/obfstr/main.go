@@ -3,6 +3,7 @@ package main
 import (
 	"gitlab.com/mjwhitta/cli"
 	hl "gitlab.com/mjwhitta/hilighter"
+	"gitlab.com/mjwhitta/log"
 	"gitlab.com/mjwhitta/obfs"
 )
 
@@ -12,7 +13,7 @@ func main() {
 			if flags.verbose {
 				panic(r.(error).Error())
 			}
-			errx(Exception, r.(error).Error())
+			log.ErrX(Exception, r.(error).Error())
 		}
 	}()
 
