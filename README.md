@@ -1,5 +1,9 @@
 # obfs
 
+[![Go Report Card](https://goreportcard.com/badge/gitlab.com/mjwhitta/obfs)](https://goreportcard.com/report/gitlab.com/mjwhitta/obfs)
+
+## What is this?
+
 A simple tool to obfuscate strings in memory.
 
 ## How to install
