@@ -31,7 +31,7 @@ clena: clean
 cyclo: check
 	@which gocyclo >/dev/null 2>&1 || \
 	    go get -u github.com/fzipp/gocyclo
-	@gocyclo -over 15 $(SRC) || echo -n
+	@gocyclo -over 15 . || echo -n
 
 dir:
 	@mkdir -p "$(OUT)"
