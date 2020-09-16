@@ -13,13 +13,24 @@ A simple tool to obfuscate strings in memory.
 Open a terminal and run the following:
 
 ```
-$ go get -u gitlab.com/mjwhitta/obfs
+$ go get -ldflags "-s -w" -u gitlab.com/mjwhitta/obfs/cmd/obfstr
 ```
+
+Or install from source:
+
+```
+$ git clone https://gitlab.com/mjwhitta/obfs.git
+$ cd obfs
+$ git submodule update --init
+$ make install
+```
+
+**Note:** `make install` will install to `$HOME/.local/bin`.
 
 ## Usage
 
 ```
-$ obfs "this is a test"
+$ obfstr "this is a test"
 // this is a test
 var str string = obfs.Deobfuscate(
     []byte{
