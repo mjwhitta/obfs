@@ -13,7 +13,9 @@ A simple tool to obfuscate strings in memory.
 Open a terminal and run the following:
 
 ```
-$ go get --ldflags "-s -w" --trimpath -u gitlab.com/mjwhitta/obfs/cmd/obfstr
+$ go get --ldflags "-s -w" --trimpath -u gitlab.com/mjwhitta/obfs
+$ go install --ldflags "-s -w" --trimpath \
+    gitlab.com/mjwhitta/obfs/cmd/obfstr@latest
 ```
 
 Or install from source:
