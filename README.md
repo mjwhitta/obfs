@@ -6,7 +6,7 @@
 
 ## What is this?
 
-A simple tool to obfuscate strings in memory.
+A simple tool to obfuscate strings in payloads.
 
 ## How to install
 
