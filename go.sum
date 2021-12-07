@@ -1,6 +1,6 @@
 gitlab.com/mjwhitta/cli v1.8.2 h1:M9u+RlYm3bsKTrZTHiS3RdRFL5quxuxHIoIDhBLJYxY=
 gitlab.com/mjwhitta/cli v1.8.2/go.mod h1:mL238URUPKng2ISpF6z57S2OddeXnGx0R69E+UptRGE=
-gitlab.com/mjwhitta/hilighter v1.9.3 h1:xiVtbQAnVSTVJmcPCayb9Btl3p6sC29Mus9xUbwjXT0=
-gitlab.com/mjwhitta/hilighter v1.9.3/go.mod h1:0T6P+tDRWslt7pquXxK8z81f9FLroeZwpniB8RWDAoc=
-gitlab.com/mjwhitta/log v1.4.6 h1:xb/jwt0CI9xnBAWbGQeZhvH+/pv2Yxao7tiftrZqCdc=
-gitlab.com/mjwhitta/log v1.4.6/go.mod h1:je2GsS8ysJvTwCoYHl9fl70+SEgPsIhgivo0T7XOFxU=
+gitlab.com/mjwhitta/hilighter v1.10.0 h1:NsJQ7M342I+SCPUyynwmNUmjv2qymBqhIT94PoPbyeU=
+gitlab.com/mjwhitta/hilighter v1.10.0/go.mod h1:0T6P+tDRWslt7pquXxK8z81f9FLroeZwpniB8RWDAoc=
+gitlab.com/mjwhitta/log v1.5.0 h1:Mp8Sl/MOpJhOY2nn/M1b8ADopttQgakDoca5JhoSvA4=
+gitlab.com/mjwhitta/log v1.5.0/go.mod h1:MMgQHONnCM4dwnH1vMtj69VY+Je3M7wep4TP1KVCggY=
