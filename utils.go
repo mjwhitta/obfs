@@ -2,9 +2,11 @@ package obfs
 
 import (
 	"crypto/rand"
-	"fmt"
 	"io"
 	"math/big"
+
+	"gitlab.com/mjwhitta/errors"
+	hl "gitlab.com/mjwhitta/hilighter"
 )
 
 func bootstrap(size int) (data []byte, e error) {
@@ -12,6 +14,7 @@ func bootstrap(size int) (data []byte, e error) {
 	var inc int
 
 	if bInt, e = rand.Int(rand.Reader, big.NewInt(MaxInc)); e != nil {
+		e = errors.Newf("failed to read random int: %w", e)
 		return
 	}
 	inc = int(bInt.Int64()&0xff) + 2 // Don't allow 0 or 1
@@ -19,6 +22,7 @@ func bootstrap(size int) (data []byte, e error) {
 	data = make([]byte, (inc*size)+1)
 
 	if _, e = io.ReadFull(rand.Reader, data); e != nil {
+		e = errors.Newf("failed to generate random data: %w", e)
 		return
 	}
 
@@ -46,9 +50,9 @@ func generateSrc(function string, data []byte) (src string) {
 	for i, b := range data {
 		if (i != 0) && ((i % 9) == 0) {
 			src += "\n       " + line
-			line = fmt.Sprintf(" 0x%02x,", b)
+			line = hl.Sprintf(" 0x%02x,", b)
 		} else {
-			line += fmt.Sprintf(" 0x%02x,", b)
+			line += hl.Sprintf(" 0x%02x,", b)
 		}
 	}
 
