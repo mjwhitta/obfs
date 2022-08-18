@@ -18,16 +18,14 @@ $ go install --ldflags "-s -w" --trimpath \
     gitlab.com/mjwhitta/obfs/cmd/obfstr@latest
 ```
 
-Or install from source:
+Or compile from source:
 
 ```
 $ git clone https://gitlab.com/mjwhitta/obfs.git
 $ cd obfs
 $ git submodule update --init
-$ make install
+$ make
 ```
-
-**Note:** `make install` will install to `$HOME/.local/bin`.
 
 ## Usage
 
