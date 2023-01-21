@@ -5,4 +5,4 @@ package obfs
 var MaxInc int64 = 64
 
 // Version is the package version.
-const Version = "1.2.2"
+const Version = "1.2.3"

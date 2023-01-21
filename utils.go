@@ -5,8 +5,8 @@ import (
 	"io"
 	"math/big"
 
-	"gitlab.com/mjwhitta/errors"
-	hl "gitlab.com/mjwhitta/hilighter"
+	"github.com/mjwhitta/errors"
+	hl "github.com/mjwhitta/hilighter"
 )
 
 func bootstrap(size int) (data []byte, e error) {

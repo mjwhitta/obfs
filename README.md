@@ -2,7 +2,7 @@
 
 <a href="https://www.buymeacoffee.com/mjwhitta">🍪 Buy me a cookie</a>
 
-[![Go Report Card](https://goreportcard.com/badge/gitlab.com/mjwhitta/obfs)](https://goreportcard.com/report/gitlab.com/mjwhitta/obfs)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mjwhitta/obfs)](https://goreportcard.com/report/github.com/mjwhitta/obfs)
 
 ## What is this?
 
@@ -13,15 +13,15 @@ A simple tool to obfuscate strings in payloads.
 Open a terminal and run the following:
 
 ```
-$ go get --ldflags "-s -w" --trimpath -u gitlab.com/mjwhitta/obfs
+$ go get --ldflags "-s -w" --trimpath -u github.com/mjwhitta/obfs
 $ go install --ldflags "-s -w" --trimpath \
-    gitlab.com/mjwhitta/obfs/cmd/obfstr@latest
+    github.com/mjwhitta/obfs/cmd/obfstr@latest
 ```
 
 Or compile from source:
 
 ```
-$ git clone https://gitlab.com/mjwhitta/obfs.git
+$ git clone https://github.com/mjwhitta/obfs.git
 $ cd obfs
 $ git submodule update --init
 $ make
@@ -64,7 +64,7 @@ package main
 import (
     "fmt"
 
-    "gitlab.com/mjwhitta/obfs"
+    "github.com/mjwhitta/obfs"
 )
 
 func main() {
@@ -99,4 +99,4 @@ func main() {
 
 ## Links
 
-- [Source](https://gitlab.com/mjwhitta/obfs)
+- [Source](https://github.com/mjwhitta/obfs)
