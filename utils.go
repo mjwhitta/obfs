@@ -32,7 +32,7 @@ func bootstrap(size int) (data []byte, e error) {
 }
 
 func deobfs(data []byte) (deobfs []byte) {
-	var increment = int(data[0])
+	var increment int = int(data[0])
 
 	for i := 1; i < len(data); i += increment {
 		deobfs = append(deobfs, data[i])
