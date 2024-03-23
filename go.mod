@@ -3,8 +3,8 @@ module github.com/mjwhitta/obfs
 go 1.19
 
 require (
-	github.com/mjwhitta/cli v1.12.2
+	github.com/mjwhitta/cli v1.12.3
 	github.com/mjwhitta/errors v1.0.2
-	github.com/mjwhitta/hilighter v1.11.7
-	github.com/mjwhitta/log v1.6.7
+	github.com/mjwhitta/hilighter v1.11.8
+	github.com/mjwhitta/log v1.6.8
 )
