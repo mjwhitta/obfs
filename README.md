@@ -14,9 +14,8 @@ A simple tool to obfuscate strings in payloads.
 Open a terminal and run the following:
 
 ```
-$ go get --ldflags "-s -w" --trimpath -u github.com/mjwhitta/obfs
-$ go install --ldflags "-s -w" --trimpath \
-    github.com/mjwhitta/obfs/cmd/obfstr@latest
+$ go get -u github.com/mjwhitta/obfs
+$ go install github.com/mjwhitta/obfs/cmd/obfstr@latest
 ```
 
 Or compile from source:
