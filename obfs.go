@@ -27,6 +27,7 @@ func ObfuscateByteArray(bArr []byte) (out string, e error) {
 	}
 
 	out = generateSrc("DeobfuscateByteArray", data)
+
 	return
 }
 
@@ -47,5 +48,6 @@ func ObfuscateString(str string) (out string, e error) {
 	}
 
 	out = generateSrc("DeobfuscateString", data)
+
 	return
 }

@@ -2,11 +2,12 @@ package obfs
 
 import (
 	"crypto/rand"
+	"fmt"
 	"io"
 	"math/big"
+	"strings"
 
 	"github.com/mjwhitta/errors"
-	hl "github.com/mjwhitta/hilighter"
 )
 
 func bootstrap(size int) (data []byte, e error) {
@@ -17,7 +18,8 @@ func bootstrap(size int) (data []byte, e error) {
 		e = errors.Newf("failed to read random int: %w", e)
 		return
 	}
-	inc = int(bInt.Int64()&0xff) + 2 // Don't allow 0 or 1
+
+	inc = int(bInt.Int64()&0xff) + 2 //nolint:mnd // no 0 or 1
 
 	data = make([]byte, (inc*size)+1)
 
@@ -41,27 +43,28 @@ func deobfs(data []byte) (deobfs []byte) {
 	return
 }
 
-func generateSrc(function string, data []byte) (src string) {
+func generateSrc(function string, data []byte) string {
 	var line string
+	var sb strings.Builder
 
-	src = "obfs." + function + "("
-	src += "\n    []byte{"
+	sb.WriteString("obfs." + function + "(")
+	sb.WriteString("\n    []byte{")
 
 	for i, b := range data {
-		if (i != 0) && ((i % 9) == 0) {
-			src += "\n       " + line
-			line = hl.Sprintf(" 0x%02x,", b)
+		if (i != 0) && ((i % 9) == 0) { //nolint:mnd // wrap every 9
+			sb.WriteString("\n       " + line)
+			line = fmt.Sprintf(" 0x%02x,", b)
 		} else {
-			line += hl.Sprintf(" 0x%02x,", b)
+			line += fmt.Sprintf(" 0x%02x,", b)
 		}
 	}
 
 	if len(line) > 0 {
-		src += "\n       " + line
+		sb.WriteString("\n       " + line)
 	}
 
-	src += "\n    },"
-	src += "\n)"
+	sb.WriteString("\n    },")
+	sb.WriteString("\n)")
 
-	return
+	return sb.String()
 }

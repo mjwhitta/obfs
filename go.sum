@@ -1,8 +1,8 @@
-github.com/mjwhitta/cli v1.12.9 h1:ni68dMYGbetq63hnwe/1rdotLfxVfi/HMwGGWKb/8Qs=
-github.com/mjwhitta/cli v1.12.9/go.mod h1:M+uREnVPG/r7+NK5hBn00OP9M5TwDjeLLWpjVMF2rBk=
-github.com/mjwhitta/errors v1.0.5 h1:yg9MCUWFPeWuz2BLqQ8cwEnQXEFfnFs+H8bnlzhT950=
-github.com/mjwhitta/errors v1.0.5/go.mod h1:MKxMaIKjHSWSyzOgvgiqGig+XH3HGLqp3BKyt5WAsnk=
-github.com/mjwhitta/hilighter v1.11.12 h1:9cx338QoNkMCr7xqgkFV76TXVkWEIbgnDjhxgLF64zo=
-github.com/mjwhitta/hilighter v1.11.12/go.mod h1:cNsXmN/ImJ7ntDUzGCbG/04ZMVwywV28ut0cPdxgx0g=
-github.com/mjwhitta/log v1.6.12 h1:NnTnzUzgw9GFL5KmlK5GntV9VuOfVfFVXcm1cwfIFoY=
-github.com/mjwhitta/log v1.6.12/go.mod h1:HMyjswGLk6NfEbmDal1mmoxXpCeCCWRZDm5QLYtuPKc=
+github.com/mjwhitta/cli v1.13.2 h1:GojnFR5vPX5YfmoN56mCJAN3K9/z1wRUpxrvRkl6kZw=
+github.com/mjwhitta/cli v1.13.2/go.mod h1:FExUKKbrIOLNM8cKN1XO1CLYlILSiu/Ae1M9t4gStzw=
+github.com/mjwhitta/errors v1.0.7 h1:gj4MNIc/DiZMZ7B0+Tz/0ExhpwurzOmuO3THTJZGkHw=
+github.com/mjwhitta/errors v1.0.7/go.mod h1:NoDi7MJLuXJuf69DeHiQMveI72TcKJdEAGVb2JJOVOs=
+github.com/mjwhitta/hilighter v1.14.1 h1:2WOKmiQcSND3H3d0nCk+Hdgqk/xt+FfAdUZCGR8trew=
+github.com/mjwhitta/hilighter v1.14.1/go.mod h1:lRbKXyDboGjH+i/fP1wM/5XpCyFdVrW8F5FyQgn/2CU=
+github.com/mjwhitta/log v1.8.2 h1:Gcpk2OT1h2j6mqjsjGVC75Jy6DxnuD/t9wcVHyD2jT8=
+github.com/mjwhitta/log v1.8.2/go.mod h1:PLqer8n9gKix/IznVjUS0gL2bGdNSJlMhLlEOjpioxc=
