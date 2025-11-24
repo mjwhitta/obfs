@@ -3,44 +3,38 @@ package obfs
 import (
 	"crypto/rand"
 	"fmt"
-	"io"
 	"math/big"
 	"strings"
 
 	"github.com/mjwhitta/errors"
 )
 
-func bootstrap(size int) (data []byte, e error) {
+func bootstrap(size int) ([]byte, error) {
+	var b []byte
 	var bInt *big.Int
-	var inc int
+	var e error
+	var increment int
+	var n int
 
 	if bInt, e = rand.Int(rand.Reader, big.NewInt(MaxInc)); e != nil {
 		e = errors.Newf("failed to read random int: %w", e)
-		return
+		return nil, e
 	}
 
-	inc = int(bInt.Int64()&0xff) + 2 //nolint:mnd // no 0 or 1
+	increment = int(bInt.Int64()&0xff) + 2 //nolint:mnd // no 0 or 1
+	b = make([]byte, (increment*size)+1)
 
-	data = make([]byte, (inc*size)+1)
-
-	if _, e = io.ReadFull(rand.Reader, data); e != nil {
+	if n, e = rand.Read(b); e != nil {
 		e = errors.Newf("failed to generate random data: %w", e)
-		return
+		return nil, e
+	} else if n != (increment*size)+1 {
+		e = errors.New("failed to generate random data")
+		return nil, e
 	}
 
-	data[0] = byte(inc)
+	b[0] = byte(increment)
 
-	return
-}
-
-func deobfs(data []byte) (deobfs []byte) {
-	var increment int = int(data[0])
-
-	for i := 1; i < len(data); i += increment {
-		deobfs = append(deobfs, data[i])
-	}
-
-	return
+	return b, nil
 }
 
 func generateSrc(function string, data []byte) string {

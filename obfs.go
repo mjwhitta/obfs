@@ -1,53 +1,64 @@
 package obfs
 
 // DeobfuscateByteArray will return the unobfuscated []byte.
-func DeobfuscateByteArray(data []byte) []byte {
-	return deobfs(data)
+func DeobfuscateByteArray(obfuscated []byte) []byte {
+	var b []byte
+	var increment int = int(obfuscated[0])
+
+	for i := 1; i < len(obfuscated); i += increment {
+		b = append(b, obfuscated[i])
+	}
+
+	return b
 }
 
 // DeobfuscateString will return the unobfuscated string.
-func DeobfuscateString(data []byte) string {
-	return string(deobfs(data))
+func DeobfuscateString(obfuscated []byte) string {
+	return string(DeobfuscateByteArray(obfuscated))
 }
 
 // ObfuscateByteArray will generate go source to deobfuscate a []byte
 // back into the original []byte.
-func ObfuscateByteArray(bArr []byte) (out string, e error) {
+func ObfuscateByteArray(b []byte) (string, error) {
 	var data []byte
+	var e error
 	var increment int
+	var obfuscated string
 
-	if data, e = bootstrap(len(bArr)); e != nil {
-		return
+	if data, e = bootstrap(len(b)); e != nil {
+		return "", e
 	}
 
 	increment = int(data[0])
 
-	for i, b := range bArr {
-		data[(i*increment)+1] = b
+	for i, c := range b {
+		data[(i*increment)+1] = c
 	}
 
-	out = generateSrc("DeobfuscateByteArray", data)
+	obfuscated = generateSrc("DeobfuscateByteArray", data)
 
-	return
+	return obfuscated, nil
 }
 
 // ObfuscateString will generate go source to deobfuscate a []byte
 // back into the original string.
-func ObfuscateString(str string) (out string, e error) {
+func ObfuscateString(s string) (string, error) {
 	var data []byte
+	var e error
 	var increment int
+	var obfuscated string
 
-	if data, e = bootstrap(len(str)); e != nil {
-		return
+	if data, e = bootstrap(len(s)); e != nil {
+		return "", e
 	}
 
 	increment = int(data[0])
 
-	for i, c := range []byte(str) {
+	for i, c := range []byte(s) {
 		data[(i*increment)+1] = c
 	}
 
-	out = generateSrc("DeobfuscateString", data)
+	obfuscated = generateSrc("DeobfuscateString", data)
 
-	return
+	return obfuscated, nil
 }
