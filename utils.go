@@ -21,7 +21,7 @@ func bootstrap(size int) ([]byte, error) {
 		return nil, e
 	}
 
-	increment = int(bInt.Int64()&0xff) + 2 //nolint:mnd // no 0 or 1
+	increment = int(bInt.Int64()&0xff) + 2 //nolint:mnd // No 0 or 1
 	b = make([]byte, (increment*size)+1)
 
 	if n, e = rand.Read(b); e != nil {
@@ -45,7 +45,7 @@ func generateSrc(function string, data []byte) string {
 	sb.WriteString("\n    []byte{")
 
 	for i, b := range data {
-		if (i != 0) && ((i % 9) == 0) { //nolint:mnd // wrap every 9
+		if (i != 0) && ((i % 9) == 0) { //nolint:mnd // Wrap every 9
 			sb.WriteString("\n       " + line)
 			line = fmt.Sprintf(" 0x%02x,", b)
 		} else {
