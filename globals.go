@@ -1,7 +1,7 @@
 package obfs
 
 // Version is the package version.
-const Version string = "1.3.6"
+const Version string = "1.3.7"
 
 // MaxInc will determine the maximum increment size when obfuscating
 // data.
