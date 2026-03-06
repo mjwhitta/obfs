@@ -3,6 +3,7 @@ package obfs
 import (
 	"crypto/rand"
 	"fmt"
+	"math"
 	"math/big"
 	"strings"
 
@@ -14,14 +15,25 @@ func bootstrap(size int) ([]byte, error) {
 	var bInt *big.Int
 	var e error
 	var increment int
+	var maxInc int64 = MaxInc
 	var n int
 
-	if bInt, e = rand.Int(rand.Reader, big.NewInt(MaxInc)); e != nil {
+	if MaxInc <= 0 {
+		maxInc = 64
+	} else if MaxInc > math.MaxUint8 {
+		maxInc = math.MaxUint8
+	}
+
+	if maxInc > 2 { //nolint:mnd // No 0
+		maxInc -= 2 // We will be adding 2 to the random int
+	}
+
+	if bInt, e = rand.Int(rand.Reader, big.NewInt(maxInc)); e != nil {
 		e = errors.Newf("failed to read random int: %w", e)
 		return nil, e
 	}
 
-	increment = int(bInt.Int64()&0xff) + 2 //nolint:mnd // No 0 or 1
+	increment = int(bInt.Int64()) + 2 //nolint:mnd // No 0 or 1
 	b = make([]byte, (increment*size)+1)
 
 	if n, e = rand.Read(b); e != nil {
@@ -32,6 +44,7 @@ func bootstrap(size int) ([]byte, error) {
 		return nil, e
 	}
 
+	//nolint:gosec // G115 - increment is from 2 to 255
 	b[0] = byte(increment)
 
 	return b, nil
